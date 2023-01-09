@@ -5,7 +5,7 @@ export default function Counter() {
     dd: 0,
     hh: 0,
     mm: 0,
-    ss: 0
+    ss: 0,
   });
 
   useEffect(() => {
@@ -17,7 +17,7 @@ export default function Counter() {
     let clockInterval = setInterval(() => {
       const end = new Date("Jul 05, 2022 12:00:00").getTime();
       const current = new Date().getTime();
-      const remaining = end-current;
+      const remaining = end - current;
       // console.log(remaining);
 
       if (current >= end) {
@@ -30,15 +30,14 @@ export default function Counter() {
       let mm = Math.floor((remaining % hour) / min);
       let ss = Math.floor((remaining % min) / sec);
 
-
-      setClockData(previous => {
+      setClockData((previous) => {
         return { ...previous, dd, hh, mm, ss };
       });
     }, 1000);
 
     return () => {
       clearInterval(clockInterval);
-    }
+    };
   }, []);
 
   return (
