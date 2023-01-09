@@ -17,13 +17,19 @@ export default function Counter() {
     let clockInterval = setInterval(() => {
       const end = new Date("Jul 05, 2022 12:00:00").getTime();
       const current = new Date().getTime();
-      // const remaining = end-current;
-      const remaining = current - end;
+      const remaining = end-current;
+      // console.log(remaining);
+
+      if (current >= end) {
+        clearInterval(clockInterval);
+        return;
+      }
 
       let dd = Math.floor(remaining / day);
       let hh = Math.floor((remaining % day) / hour);
       let mm = Math.floor((remaining % hour) / min);
       let ss = Math.floor((remaining % min) / sec);
+
 
       setClockData(previous => {
         return { ...previous, dd, hh, mm, ss };

@@ -9,6 +9,8 @@ export default function SubscriptionForm() {
   const handleSubmit = (e) => {
     e.preventDefault();
 
+    // console.log(email);
+
     if (!validate(email)) {
       setAlertClass('alert-validate');
       return;
@@ -19,8 +21,10 @@ export default function SubscriptionForm() {
         'Content-Type': 'application/json'
       },
       body: JSON.stringify({ email })
-    }).then(res => res.text())
-      .then(data => JSON.parse(`${data}`))
+    })
+    // .then(res => res.text())
+      // .then(data => JSON.parse(`${data}`))
+      .then(res => res.json())
       .then(data => hitToast(data.message, data.success ? 'success' : 'error'))
       .catch(() => hitToast('Something went wrong. Please try again.', 'error'))
 
